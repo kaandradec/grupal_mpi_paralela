@@ -8,7 +8,10 @@
 
 #include "blelloch.h"
 
-#define N 64
+// #define N 8
+// #define N 64
+// #define N 256
+#define N 1024
 
 int main(int argc, char **argv)
 {
@@ -50,10 +53,10 @@ int main(int argc, char **argv)
 
   // Punto a Punto
   MPI_Barrier(MPI_COMM_WORLD);
-  const double inicio_p2p = MPI_Wtime();
+  const double inicio_pap = MPI_Wtime();
   std::vector<int> resultado_p2p = blelloch_punto_a_punto(rank, num_procesos, datos);
   MPI_Barrier(MPI_COMM_WORLD);
-  const double tiempo_p2p = MPI_Wtime() - inicio_p2p;
+  const double tiempo_pap = MPI_Wtime() - inicio_pap;
 
   // Colectiva
   MPI_Barrier(MPI_COMM_WORLD);
@@ -64,14 +67,14 @@ int main(int argc, char **argv)
 
   if (rank == 0)
   {
-    fmt::print("Resultado P2P:       {}\n", resultado_p2p);
-    fmt::print("Resultado Colectiva: {}\n", resultado_colectiva);
+    fmt::println("Resultado PaP:       {}\n", resultado_p2p);
+    fmt::println("Resultado Colectiva: {}\n", resultado_colectiva);
 
-    fmt::println("\nComparativa de tiempos (s):");
+    fmt::println("\nComparativa de tiempos (ms):");
     fmt::println("Metodo             Tiempo");
     fmt::println("----------------------------");
-    fmt::println("Punto a punto      {:.6f}", tiempo_p2p);
-    fmt::println("Colectiva          {:.6f}", tiempo_colectiva);
+    fmt::println("Punto a punto      {:.6f}", tiempo_pap * 1000);
+    fmt::println("Colectiva          {:.6f}", tiempo_colectiva * 1000);
   }
 
   MPI_Finalize();
