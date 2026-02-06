@@ -11,14 +11,12 @@
 #include "histograma.h"
 
 // [SCAN]
-#define N 8
-// #define N 64
-// #define N 256
 // #define N 1024
+#define N (2 << 20) // 1048576 elementos
 
 // [HISTOGRAMA]
 // CONFIGURACIÓN
-#define M 100       // Número total de datos
+#define M 8000000   // Número total de datos
 #define NUM_BINS 10 // Cantidad de barras del histograma
 #define MIN_VAL 0   // Valor mínimo de los datos
 #define MAX_VAL 99  // Valor máximo de los datos
@@ -99,9 +97,9 @@ bool ejercicio_scan_blelloch(int rank, int num_procesos)
 
   if (rank == 0)
   {
-    fmt::println("[SCAN]");
-    fmt::println("Resultado PaP: {}", resultado_p2p);
-    fmt::println("Resultado Colectiva: {}", resultado_colectiva);
+    fmt::println("[SCAN] blelloch");
+    // fmt::println("Resultado PaP: {}", resultado_p2p);
+    // fmt::println("Resultado Colectiva: {}", resultado_colectiva);
     fmt::println("Comparativa de tiempos (ms):");
     fmt::println("Método            Tiempo");
     fmt::println("------------------------------");
@@ -164,8 +162,8 @@ bool ejercicio_histograma(int rank, int num_procesos)
   if (rank == 0)
   {
     fmt::println("[HISTOGRAMA]");
-    fmt::println("\n Resultado PaP: {}", bins_p2p);
-    fmt::println(" Resultado Colectiva: {}", bins_colectiva);
+    // fmt::println("\n Resultado PaP: {}", bins_p2p);
+    // fmt::println(" Resultado Colectiva: {}", bins_colectiva);
     fmt::println(" Comparativa de tiempos (ms):");
     fmt::println("Método            Tiempo");
     fmt::println("------------------------------");
