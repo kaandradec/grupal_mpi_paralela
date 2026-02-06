@@ -57,7 +57,7 @@ void imprimir_vector_original(const std::vector<int> &datos)
   }
 }
 
-bool ejercicio_scan(int rank, int num_procesos)
+bool ejercicio_scan_blelloch(int rank, int num_procesos)
 {
   std::vector<int> datos(N);
   std::iota(datos.begin(), datos.end(), 1);
@@ -188,7 +188,7 @@ int main(int argc, char **argv)
     fmt::println("MPI Iniciado. N={} Procesos={}", N, num_procesos);
   }
 
-  const bool scan_ok = ejercicio_scan(rank, num_procesos);
+  const bool scan_ok = ejercicio_scan_blelloch(rank, num_procesos);
   const bool hist_ok = ejercicio_histograma(rank, num_procesos);
 
   MPI_Finalize();
