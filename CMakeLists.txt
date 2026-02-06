@@ -14,7 +14,8 @@ include_directories(${MPI_INCLUDE}) # Aqui incluye archivos .h
 
 add_executable(grupalMPI 
 main.cpp
-blelloch.cpp)
+blelloch.cpp
+histograma.cpp)
 
 target_link_libraries(grupalMPI PRIVATE 
 fmt::fmt 
